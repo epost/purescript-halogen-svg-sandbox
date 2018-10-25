@@ -1,0 +1,29 @@
+#+title:Halogen Sandbox
+
+* Problem with SVG ~animateMotion~
+
+** Description:
+
+I generate some SVG containing a horizontal grey line. Upon pressing the
+~animate~ button, the ball should start moving along the line from left to
+right. Unfortunately, it doesn't. :(
+
+However, when I copy the SVG into another div, and press the button again, the
+animation /does/ start there.
+
+It seems like there is something going on around Halogen that prevents the SVG
+animation from working, but I have no clue what or how to diagnose it, other
+than looking at possibly problematic event handlers in the browser dev tools,
+which has been inconclusive.
+
+** To reproduce:
+
+1) ~npm install~
+1) ~npm run build~
+1) Open ~dist/index.html~ with your browser.
+1) Follow instructions on the web page.
+
+** Some details
+
+- I tested this on Chrome and Firefox on Mac.
+- The SVG code is adapted from https://github.com/kettlebell/purescript-halogen-svg, which is a fork of https://github.com/kwohlfahrt/purescript-halogen-svg.
