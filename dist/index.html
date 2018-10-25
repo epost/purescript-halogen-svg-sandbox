@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Halogen Sandbox</title>
+    <style>
+     body {
+         margin: 0;
+         font-family: Verdana, Arial, sans-serif;
+     }
+     svg {
+         border: 2px solid #ddd;
+         display: block;
+         height: 100%;
+         width: 100%;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         -webkit-user-select: none;
+         user-select: none;
+     }
+    </style>
+  </head>
+  <body>
+
+    <p>
+      <ol>
+        <li>Pressing <button id="button2">animate</button> on the Halogen-generated SVG doesn't work.</li>
+        <li>if we <button id="button3">copy</button> the SVG innerHTML to another div, it will work there.</li>
+        <li>Pressing <button id="button4">animate</button> again <em>will</em> invoke animation, but only on the copied SVG.</li>
+      </ol>
+    </p>
+
+    <div id="copy-me-copy">
+    </div>
+
+    <h3>original Halogen-generated SVG:</h3>
+    
+    <script src="app.js"></script>
+    <script>
+      function copySvg (x) {
+        console.log('button3_click')
+        var svgSrcDiv = document.querySelectorAll('.copy-me')[0]
+        var svgTargetDiv = document.querySelectorAll('#copy-me-copy')[0]
+        var svgSrcText = svgSrcDiv.innerHTML
+        svgTargetDiv.innerHTML = "<h3>copy of the Halogen-generated SVG innerHTML:</h3>" + svgSrcText
+      }
+
+      function startAnimation (x) {
+        console.log('button2_click')
+        var animateMotionElem = document.querySelector('#tr_100_animation') 
+        console.log('animateMotionElem =', animateMotionElem)
+        animateMotionElem.beginElement()
+      }
+
+      var button2 = document.querySelector('#button2')
+      button2.onclick = startAnimation
+
+      var button3 = document.querySelector('#button3')
+      button3.onclick = copySvg
+
+      var button4 = document.querySelector('#button4')
+      button4.onclick = startAnimation
+      // window.setTimeout(button3_click, 1000)
+    </script>
+  </body>
+</html>
